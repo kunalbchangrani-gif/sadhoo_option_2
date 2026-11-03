@@ -1,0 +1,775 @@
+<title>Sadhoo Scatter</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Sadhoo: four extraits de parfum made in India. Kailash, Tripti, Lavanya and Tattva.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=Caveat:wght@500;700&family=Tiro+Devanagari+Hindi&display=swap">
+<script>
+/* always open at the very top (browsers and the viewer otherwise restore the old scroll spot);
+   links to a section such as #story still land on that section */
+try{if("scrollRestoration" in history)history.scrollRestoration="manual"}catch(_){}
+(function(){if(location.hash&&location.hash!=="#top")return;
+  let user=false;const mark=()=>{user=true};
+  ["wheel","touchstart","keydown","pointerdown"].forEach(e=>addEventListener(e,mark,{passive:true,once:true}));
+  const t0=performance.now();
+  (function hold(){if(user)return;if(scrollY!==0)window.scrollTo(0,0);if(performance.now()-t0<1500)requestAnimationFrame(hold)})();
+})();
+</script>
+<style>
+/* Layout: a strict, quiet archive grid (tiny meta type, hairline rules, lots of paper) that gets
+   interrupted on purpose: scattered draggable bottles, ballpoint-pen annotations, a taped photo
+   collage and a jumbled note cloud. One light paper theme by design. */
+:root{
+  color-scheme: light;
+  --paper:#f2f0eb; --paper-2:#e7e4dc; --ink:#151412; --ink-2:#5c5851; --rule:rgba(21,20,18,.16);
+  --pen:#2846c8;                     /* ballpoint blue: the only "loud" colour */
+  --k:#5b7189; --t:#b4506e; --l:#6c58a0; --v:#546a3f;   /* one quiet accent per fragrance */
+  --sans:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --hand:"Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --deva:"Tiro Devanagari Hindi", "Nirmala UI", serif;
+  --gut-l:max(16px, env(safe-area-inset-left, 0px)); --gut-r:max(16px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.55 var(--sans);font-variation-settings:"wdth" 100;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--pen);outline-offset:3px}
+.wrap{max-width:1320px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+em{font-family:var(--serif);font-style:italic;font-weight:300}
+.meta{font:500 11px/1.45 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.num{font:500 12px/1 var(--sans);letter-spacing:.06em;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.pen{font:500 24px/1.05 var(--hand);color:var(--pen)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 22px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:0;transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--ink)}
+.ulink{font:500 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px}
+.sec-h{display:grid;grid-template-columns:80px 1fr auto;align-items:end;gap:12px 20px;padding-bottom:18px;border-bottom:1px solid var(--ink);margin-bottom:0}
+.sec-h h2{font:800 clamp(40px,7vw,104px)/.86 var(--sans);font-variation-settings:"wdth" var(--wd,62);white-space:nowrap;letter-spacing:-.01em;text-transform:uppercase}
+.sec-h .pen{transform:rotate(-4deg);justify-self:end;max-width:16ch;text-align:right}
+
+/* ---------- offer bar + header ---------- */
+.announce{border-bottom:1px solid var(--rule)}
+.announce .wrap{display:flex;justify-content:space-between;gap:6px 18px;flex-wrap:wrap;padding-block:9px}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(242,240,235,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:56px;gap:16px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo img{width:auto;display:block}
+.logo .l-icon{height:32px}
+.logo .l-text{height:13px}
+.stamp-icon{display:block;height:78px;width:auto;margin:0 auto 26px;transform:rotate(-9deg)}
+.l-full{height:150px;width:auto;margin-bottom:14px}
+.nav-c{display:flex;gap:26px}
+.nav-c a,.nav-r button{font:500 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;background:none;border:0;padding:10px 0}
+.nav-c a:hover{color:var(--pen)}
+.nav-r{display:flex;justify-content:flex-end;gap:20px}
+.nav-r .n{font-variant-numeric:tabular-nums}
+.menu-btn{display:none}
+
+/* ---------- hero: quiet grid + scattered bottles ---------- */
+.hero{min-height:calc(100vh - 92px);min-height:calc(100svh - 92px);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.hero > .wrap{width:100%}
+.hero-top{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-block:18px 0}
+.hero-top .meta span{display:block}
+.hero-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;padding-block:26px 0;position:relative;z-index:3}
+.hero-head h1{font:300 clamp(40px,5.4vw,84px)/.95 var(--serif);letter-spacing:-.02em;max-width:9ch}
+.hero-head h1 em{font-weight:300}
+.hero-cta{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.field{position:relative;flex:1;min-height:340px;margin-top:8px}
+.wordmark{position:absolute;left:0;right:0;bottom:-.06em;display:flex;justify-content:center;font:900 min(22.5vw,44vh)/.78 var(--sans);text-transform:uppercase;letter-spacing:-.02em;color:var(--ink);pointer-events:none;user-select:none;white-space:nowrap}
+.wordmark span{display:inline-block;font-variation-settings:"wdth" var(--w,62);transform:translateY(calc(var(--y,0em) + var(--ly,0px))) rotate(var(--rr,0deg));animation:riseL 1s cubic-bezier(.2,.8,.2,1) backwards}
+.wordmark span:nth-child(2){animation-delay:.06s}.wordmark span:nth-child(3){animation-delay:.12s}.wordmark span:nth-child(4){animation-delay:.18s}.wordmark span:nth-child(5){animation-delay:.24s}.wordmark span:nth-child(6){animation-delay:.3s}
+@keyframes riseL{from{translate:0 105%}}
+.wordmark{bottom:clamp(12px,3vh,36px);align-items:flex-end}
+.wordmark img{width:min(94%,1280px);height:auto;transform-origin:50% 100%;transform:translateY(var(--ly,0px)) scale(var(--ls,1));animation:riseL 1.1s cubic-bezier(.2,.8,.2,1) backwards}
+/* inline SVG logo: each letter is its own shape, so it can move on its own */
+.wordmark svg{width:min(94%,1280px);height:auto;overflow:visible;display:block}
+.lt{transform-box:fill-box;transform-origin:50% 100%}
+.wordmark{bottom:clamp(22px,6vh,64px)}
+.big-mark .lt{transform:translateY(calc(var(--jy,0px) + var(--ly,0px))) rotate(calc(var(--jr,0deg) + var(--lr,0deg)))}
+.wordmark .lt{transform:translateY(calc(var(--jy,0px) + var(--ly,0px))) rotate(calc(var(--jr,0deg) + var(--lr,0deg)));animation:riseL 1s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0) * .07s)}
+.big-mark{overflow:visible!important;padding-top:3vw;margin-top:18px!important}
+.big-mark img,.big-mark svg{width:100%;height:auto;display:block;overflow:visible}
+.big-mark.hop .lt{animation:hop .7s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--i,0) * .07s)}
+@keyframes fadeUp{from{opacity:0;translate:0 16px}}
+.hero-top .meta{animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) backwards}
+.hero-top .meta:nth-child(2){animation-delay:.08s}.hero-top .meta:nth-child(3){animation-delay:.16s}.hero-top .meta:nth-child(4){animation-delay:.24s}
+.hero-head h1{animation:fadeUp 1s .2s cubic-bezier(.2,.7,.2,1) backwards}
+.hero-cta{animation:fadeUp 1s .35s cubic-bezier(.2,.7,.2,1) backwards}
+.hint,.hero .sticker{animation:pop .6s 1.3s cubic-bezier(.3,1.6,.5,1) backwards}
+@keyframes pop{from{opacity:0;scale:.6}}
+
+/* black note ticker: speed and lean follow how fast you scroll */
+.band{overflow:hidden;background:var(--ink);color:var(--paper);padding-block:16px}
+.band-track{display:flex;width:max-content;align-items:baseline;gap:26px;white-space:nowrap;will-change:transform}
+.band-track span{font:800 clamp(30px,4vw,54px)/1 var(--sans);font-variation-settings:"wdth" 62;text-transform:uppercase}
+.band-track i{font:300 italic clamp(30px,4vw,54px)/1 var(--serif)}
+.band-track b{font:500 22px/1 var(--hand);color:#8fa3ff;transform:rotate(-6deg);display:inline-block}
+.bottle{position:absolute;left:var(--x);top:var(--y);z-index:2;border:0;background:none;padding:0;cursor:grab;touch-action:none;
+  transform:translate(calc(var(--dx,0px) + var(--px,0px) + var(--hx,0px)),calc(var(--dy,0px) + var(--py,0px) + var(--hy,0px))) rotate(calc(var(--r,0deg) + var(--tilt,0deg) + var(--pr,0deg)));
+  transition:transform .3s cubic-bezier(.2,.7,.2,1);animation:drop 1.15s cubic-bezier(.3,1.3,.5,1) backwards;animation-delay:var(--dd,0s)}
+@keyframes drop{from{opacity:0;translate:0 -105vh;rotate:-35deg}}
+.bottle.drag{cursor:grabbing;transition:none}
+.bottle img{height:clamp(150px,31vh,330px);width:auto;aspect-ratio:560/806;filter:drop-shadow(0 18px 18px rgba(21,20,18,.22));animation:bob 7s ease-in-out infinite;animation-delay:var(--d,0s);pointer-events:none}
+.bottle .tag{position:absolute;left:50%;bottom:-6px;translate:-50% 100%;font:500 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .2s}
+.bottle:hover .tag,.bottle:focus-visible .tag{opacity:1}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.hint{position:absolute;z-index:3;right:6%;top:4%;display:flex;align-items:flex-start;gap:4px;transform:rotate(-6deg);pointer-events:none}
+.hint svg{width:70px;height:54px;stroke:var(--pen);fill:none;stroke-width:2;stroke-linecap:round;margin-top:14px}
+.sticker{position:absolute;z-index:3;display:grid;place-items:center;text-align:center;width:104px;aspect-ratio:1;border-radius:50%;background:var(--ink);color:var(--paper);font:700 11px/1.15 var(--sans);letter-spacing:.08em;text-transform:uppercase;transform:rotate(14deg);padding:12px}
+.sticker b{display:block;font:800 26px/1 var(--sans);font-variation-settings:"wdth" 62}
+.hero .sticker{left:4%;top:8%}
+
+/* ---------- manifesto with pen marks ---------- */
+.manifesto{padding-block:clamp(80px,12vw,170px)}
+.manifesto p{margin:0 auto;max-width:20ch;font:300 clamp(32px,4.6vw,66px)/1.12 var(--serif);letter-spacing:-.015em;text-align:center}
+.mark{position:relative;white-space:nowrap}
+.mark svg{position:absolute;inset:-22% -10% -26% -10%;width:120%;height:148%;overflow:visible;pointer-events:none}
+.mark path{fill:none;stroke:var(--pen);stroke-width:2.2;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.under svg{inset:auto -4% -18% -4%;width:108%;height:30%}
+.manifesto .pen{display:block;text-align:center;margin-top:30px;transform:rotate(-2deg)}
+
+/* ---------- the four: plain index list ---------- */
+.index{padding-bottom:clamp(70px,9vw,130px)}
+.rows{list-style:none;margin:0;padding:0}
+.row{position:relative;display:grid;grid-template-columns:80px minmax(0,1.3fr) minmax(0,1fr) minmax(0,1.2fr) auto auto;align-items:center;gap:14px 20px;padding:22px 0;border-bottom:1px solid var(--rule);transition:background .25s}
+.row::before{content:"";position:absolute;inset:0 calc(-1 * var(--gut-l)) 0 calc(-1 * var(--gut-r));background:var(--acc);opacity:0;transition:opacity .3s;z-index:-1}
+.row:hover::before{opacity:.07}
+.row.flash::before{opacity:.16}
+.r-thumb{display:none}
+.r-name{font:300 clamp(40px,4.6vw,68px)/.95 var(--serif);letter-spacing:-.02em;display:flex;align-items:baseline;gap:12px}
+.r-name .deva{font:400 18px/1 var(--deva);color:var(--acc)}
+.r-mood{font-size:14px}
+.r-mood b{display:block;font:500 11px/1.4 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.r-notes{font-size:14px;color:var(--ink-2)}
+.r-buy{display:grid;justify-items:end;gap:4px;text-align:right;font-variant-numeric:tabular-nums}
+.r-buy b{font:400 22px/1 var(--serif)}
+.r-buy s{color:var(--ink-2);font-size:13px;margin-left:6px}
+.r-buy small{font-size:12px;color:var(--ink-2)}
+.add{min-height:46px;min-width:46px;padding:0 18px;border:1px solid var(--ink);background:transparent;font:600 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;transition:background .2s,color .2s}
+.add:hover{background:var(--ink);color:var(--paper)}
+.rate-note{font-size:12px;color:var(--ink-2);margin:14px 0 0}
+.follow{position:fixed;left:0;top:0;z-index:30;width:150px;pointer-events:none;opacity:0;filter:drop-shadow(0 16px 18px rgba(21,20,18,.25));transition:opacity .25s}
+.follow.on{opacity:1}
+
+/* ---------- story collage ---------- */
+.story{padding-block:clamp(70px,9vw,130px);border-top:1px solid var(--ink)}
+.story-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(30px,5vw,80px);align-items:center}
+.story-text{display:grid;gap:20px;align-content:start}
+.story-text h2{font:800 clamp(44px,6vw,92px)/.86 var(--sans);font-variation-settings:"wdth" var(--wd,62);text-transform:uppercase}
+.story-text h2 em{display:block;font-family:var(--serif);font-weight:300;text-transform:none;font-size:.62em;letter-spacing:-.01em;margin-top:6px}
+.story-text p{margin:0;max-width:46ch;color:var(--ink-2)}
+.facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);margin:8px 0 0}
+.facts div{padding:14px 10px 14px 0;border-bottom:1px solid var(--rule)}
+.facts dt{font:800 30px/1 var(--sans);font-variation-settings:"wdth" 62}
+.facts dd{margin:4px 0 0;font-size:12px;color:var(--ink-2)}
+.collage{position:relative;height:clamp(440px,48vw,640px)}
+.ph{position:absolute;margin:0;background:#fff;padding:8px 8px 34px;box-shadow:0 16px 30px -18px rgba(21,20,18,.45);transform:translateY(var(--sy,0px)) rotate(calc(var(--r) + var(--sr,0deg)));transition:transform .4s cubic-bezier(.2,.7,.2,1);width:var(--w)}
+.ph:hover{transform:rotate(0deg) scale(1.03);z-index:5}
+.ph img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.ph figcaption{position:absolute;left:12px;bottom:6px;font:500 20px/1 var(--hand);color:var(--pen)}
+.ph::before{content:"";position:absolute;top:-12px;left:50%;width:84px;height:24px;translate:-50% 0;rotate:var(--tr,-3deg);background:rgba(232,226,208,.85);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.p1{--w:38%;left:2%;top:4%;--r:-6deg}
+.p2{--w:34%;left:40%;top:0;--r:4deg;--tr:5deg}
+.p3{--w:36%;left:62%;top:34%;--r:-3deg}
+.p4{--w:32%;left:22%;top:46%;--r:7deg;--tr:-8deg}
+.collage .sticker{right:2%;top:2%;width:96px;transform:rotate(-12deg);background:var(--pen)}
+.collage .scrawl{position:absolute;left:4%;bottom:2%;transform:rotate(-5deg);font-size:26px}
+
+/* ---------- note cloud ---------- */
+.cloud{padding-block:clamp(70px,9vw,130px);border-top:1px solid var(--ink)}
+.cloud-box{position:relative;height:clamp(380px,44vw,560px);margin-top:20px;--scale:1}
+.word{position:absolute;left:var(--x);top:var(--y);transform:translate(calc(-50% + var(--ox,0px)),calc(-50% + var(--oy,0px))) rotate(var(--r));border:0;background:none;padding:6px 10px;min-height:44px;font-size:calc(var(--fs) * var(--scale));line-height:1;white-space:nowrap;color:var(--ink);transition:color .2s, transform .45s cubic-bezier(.2,.7,.2,1);animation:wander var(--dur,7s) ease-in-out var(--del,0s) infinite}
+@keyframes wander{0%,100%{translate:0 0}33%{translate:7px -9px}66%{translate:-6px 6px}}
+.word.t-s{font-family:var(--serif);font-style:italic;font-weight:300}
+.word.t-a{font-weight:800;font-variation-settings:"wdth" 62;text-transform:uppercase}
+.word.t-n{font-weight:300;font-variation-settings:"wdth" 110;text-transform:lowercase}
+.word:hover{transform:translate(calc(-50% + var(--ox,0px)),calc(-50% + var(--oy,0px))) rotate(0deg) scale(1.06)}
+.manifesto .w{transition:opacity .35s ease}
+.manifesto .w.dim{opacity:.18}
+.big-mark span{display:inline-block}
+.big-mark.hop span{animation:hop .7s cubic-bezier(.3,1.5,.5,1) both}
+.big-mark.hop span:nth-child(2){animation-delay:.07s}.big-mark.hop span:nth-child(3){animation-delay:.14s}.big-mark.hop span:nth-child(4){animation-delay:.21s}.big-mark.hop span:nth-child(5){animation-delay:.28s}.big-mark.hop span:nth-child(6){animation-delay:.35s}
+@keyframes hop{40%{translate:0 -16%;rotate:-4deg}}
+.word[aria-pressed="true"]{color:var(--pen)}
+.word[aria-pressed="true"]::after{content:"";position:absolute;inset:-4px -6px;border:2px solid var(--pen);border-radius:50% 46% 52% 48%/48% 54% 46% 52%;transform:rotate(-3deg)}
+.cloud-out{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;border-top:1px solid var(--rule);padding-top:18px}
+.cloud-out p{margin:0;font:300 clamp(22px,2.4vw,32px)/1.2 var(--serif)}
+.cloud-out p b{font-weight:400;color:var(--pen)}
+.hits{display:flex;gap:10px}
+.hits a{display:flex;align-items:center;gap:8px;text-decoration:none;font-size:13px;border:1px solid var(--rule);padding:4px 12px 4px 4px;min-height:44px}
+.hits img{width:28px;height:40px;object-fit:contain}
+
+/* ---------- reviews as pinned notes ---------- */
+.said{padding-block:clamp(70px,9vw,130px);border-top:1px solid var(--ink)}
+.notes-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px;margin-top:40px}
+.paper{position:relative;background:#fbfaf6;padding:26px 22px 20px;box-shadow:0 14px 24px -18px rgba(21,20,18,.5);transform:rotate(var(--r))}
+.paper::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:20px;translate:-50% 0;rotate:var(--tr,2deg);background:rgba(232,226,208,.9)}
+.paper blockquote{margin:0;font:300 20px/1.35 var(--serif)}
+.paper footer{display:flex;justify-content:space-between;margin-top:18px;font-size:12px;color:var(--ink-2);background:none;padding:0}
+.paper footer b{color:var(--ink);font-weight:600}
+
+/* ---------- tester ---------- */
+.tester{border-top:1px solid var(--ink);padding-block:clamp(60px,8vw,110px)}
+.tester-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:30px;align-items:center}
+.tester-lede{margin:0;max-width:30ch;font:300 clamp(24px,2.4vw,34px)/1.25 var(--serif);letter-spacing:-.01em}
+.tester ol{list-style:none;padding:0;margin:26px 0;display:grid;gap:0;max-width:520px;border-top:1px solid var(--rule)}
+.tester li{display:grid;grid-template-columns:60px 1fr;padding:12px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.tester li span{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.pair{--bh:clamp(220px,22vw,300px);position:relative;display:flex;align-items:flex-end;justify-content:center;gap:6px;min-height:calc(var(--bh) + 40px)}
+.pair img{filter:drop-shadow(0 18px 20px rgba(21,20,18,.22))}
+.pair .big{height:var(--bh);width:auto;transform:rotate(-4deg)}
+.pair .mini{height:calc(var(--bh) * .8);width:auto;transform:rotate(5deg);margin-left:calc(var(--bh) * .03)}  /* 8 ml vial: ~80% of the bottle height */
+.pair .big,.pair .mini{position:relative;z-index:2}
+.pair .pouch{position:relative;z-index:1;height:calc(var(--bh) * 1.28);width:auto;margin-left:calc(var(--bh) * -.2);transform:rotate(-3deg)}  /* pouch ≈ 1.6× the tester */
+.pair .pen{position:absolute;z-index:3;right:-2%;bottom:calc(var(--bh) * .84);transform:rotate(-8deg)}
+.pair .pen svg{display:block;width:60px;height:40px;stroke:var(--pen);fill:none;stroke-width:2;stroke-linecap:round;margin:4px 0 0 10px}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--ink);padding-block:clamp(60px,8vw,110px)}
+.faq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,5vw,80px);margin-top:30px}
+.ask{display:grid;gap:10px;align-content:start;font-size:14px}
+.ask .row2{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--rule);padding-bottom:10px}
+.ask code{font:500 15px/1.3 var(--sans);user-select:all}
+.copy{border:1px solid var(--ink);background:none;padding:0 12px;min-height:34px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+details{border-bottom:1px solid var(--rule)}
+details:first-of-type{border-top:1px solid var(--rule)}
+summary{list-style:none;display:grid;grid-template-columns:50px 1fr auto;gap:12px;align-items:baseline;padding:18px 0;cursor:pointer;font:300 clamp(20px,1.9vw,26px)/1.25 var(--serif)}
+summary::-webkit-details-marker{display:none}
+summary .num{align-self:center}
+summary::after{content:"+";font:300 24px/1 var(--sans)}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 20px 62px;color:var(--ink-2);max-width:60ch}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--ink);padding-block:50px 26px}
+.foot-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:end;padding-bottom:36px;border-bottom:1px solid var(--rule)}
+.foot-top h2{font:300 clamp(30px,3.4vw,46px)/1.05 var(--serif)}
+.news{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0}
+.news label{grid-column:1/-1;margin-bottom:8px}
+.news input{min-width:0;min-height:48px;border:1px solid var(--ink);border-right:0;background:transparent;padding:0 16px;font:inherit;color:var(--ink);border-radius:0}
+.news-msg{grid-column:1/-1;font-size:12px;color:var(--ink-2);margin:8px 0 0;min-height:1.3em}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.6fr;gap:26px;padding-block:32px}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:14px}
+.foot-grid a{text-decoration:none}
+.foot-grid a:hover{color:var(--pen)}
+.foot-grid h3{margin-bottom:12px}
+.foot-grid address{font-style:normal;font-size:13px;color:var(--ink-2);line-height:1.6}
+.big-mark{font:900 min(25vw,300px)/.78 var(--sans);font-variation-settings:"wdth" 62;letter-spacing:-.01em;text-transform:uppercase;margin:6px 0 0;white-space:nowrap;overflow:hidden}
+.foot-base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-top:1px solid var(--rule);padding-top:16px;margin-top:20px}
+
+/* ---------- bag drawer, menu, toast ---------- */
+.scrim{position:fixed;inset:0;background:rgba(21,20,18,.35);z-index:60;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;right:0;width:min(420px,100%);z-index:70;background:var(--paper);border-left:1px solid var(--ink);transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);display:grid;grid-template-rows:auto auto 1fr auto;padding:calc(16px + env(safe-area-inset-top,0px)) max(20px, env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) 20px}
+.drawer.on{transform:none}
+.d-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--ink);padding-bottom:12px}
+.d-head h2{font:800 30px/1 var(--sans);font-variation-settings:"wdth" 62;text-transform:uppercase}
+.x{width:44px;height:44px;border:0;background:none;font-size:22px}
+.offer{font-size:12px;color:var(--ink-2);padding:12px 0;border-bottom:1px solid var(--rule)}
+.offer b{color:var(--ink)}
+.lines{overflow:auto;min-height:0;display:grid;align-content:start;gap:0}
+.li{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule)}
+.li img{width:56px;height:70px;object-fit:contain}
+.li b{font:400 20px/1 var(--serif)}
+.qty{display:flex;align-items:center;gap:4px;margin-top:6px}
+.qty button{width:32px;height:32px;border:1px solid var(--rule);background:none}
+.qty span{min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
+.tp{padding:12px 0;display:grid;gap:6px;font-size:13px}
+.tp select{min-height:40px;border:1px solid var(--ink);background:transparent;padding:0 8px;font:inherit;border-radius:0}
+.empty{padding:40px 0;display:grid;gap:12px;color:var(--ink-2)}
+.empty b{font:300 26px/1.2 var(--serif);color:var(--ink)}
+.totals{display:grid;gap:6px;padding-top:12px;border-top:1px solid var(--ink);font-size:14px;font-variant-numeric:tabular-nums}
+.totals .r{display:flex;justify-content:space-between}
+.totals .g{font:400 22px/1 var(--serif);margin-top:4px}
+.totals .btn{justify-content:center;margin-top:8px}
+.totals small{font-size:11px;color:var(--ink-2);text-align:center}
+.sheet{position:fixed;inset:0;z-index:70;background:var(--paper);display:grid;align-content:start;gap:4px;padding:calc(14px + env(safe-area-inset-top,0px)) var(--gut-r) 20px var(--gut-l);transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.sheet.on{transform:none}
+.sheet a.big{font:800 56px/.95 var(--sans);font-variation-settings:"wdth" 62;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--rule);padding:8px 0}
+.sheet .pen{margin-top:16px;transform:rotate(-3deg)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--ink);color:var(--paper);padding:11px 18px;font-size:13px;z-index:90;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- scroll motion (progressive; everything on screen is fully visible) ---------- */
+@supports (animation-timeline: view()){
+  @keyframes draw{from{stroke-dashoffset:1}}
+  @keyframes tumble{from{opacity:0;transform:translateY(60px) rotate(calc(var(--r) * 3))}}
+  .paper{animation:tumble linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+  @keyframes slideRow{from{opacity:0;translate:-40px 0}}
+  .row{animation:slideRow linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+  .row:nth-child(even){animation-name:slideRowR}
+  @keyframes slideRowR{from{opacity:0;translate:40px 0}}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1000px){
+  .row{grid-template-columns:60px minmax(0,1fr) minmax(0,1fr) auto;grid-template-areas:"no name name buy" "no mood notes add"}
+  .r-no{grid-area:no;align-self:start;padding-top:10px}.r-name{grid-area:name}.r-mood{grid-area:mood}.r-notes{grid-area:notes}.r-buy{grid-area:buy}.add{grid-area:add;justify-self:end}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ---------- phone (390px first) ---------- */
+@media (max-width: 720px){
+  .announce .wrap{justify-content:center}
+  .announce .meta:nth-child(3){display:none}
+  .nav{grid-template-columns:auto 1fr auto;min-height:52px}
+  .nav-c{display:none}
+  .menu-btn{display:inline-block}
+  .nav-r{gap:14px}
+  .hero{min-height:calc(100svh - 86px)}
+  .hero-top{grid-template-columns:1fr 1fr;gap:10px;padding-top:14px}
+  .hero-top .meta:nth-child(n+3){display:none}
+  .hero-head{padding-top:18px}
+  .hero-head h1{font-size:44px}
+  .hero-cta{gap:14px}
+  .field{min-height:300px}
+  .bottle{left:var(--mx);top:var(--my);touch-action:pan-y}
+  .bottle img{height:clamp(120px,22svh,190px)}
+  .hint{right:2%;top:0}
+  .hint .pen{font-size:21px}
+  .hero .sticker{width:82px;left:auto;right:4%;top:auto;bottom:34%;font-size:9px}
+  .hero .sticker b{font-size:21px}
+  .wordmark{font-size:24vw}
+  .sec-h{grid-template-columns:44px 1fr;grid-template-areas:"n h" "p p"}
+  .sec-h .num{grid-area:n}.sec-h h2{grid-area:h}.sec-h .pen{grid-area:p;justify-self:start;text-align:left;font-size:21px}
+  .row{grid-template-columns:72px minmax(0,1fr) auto;grid-template-areas:"img name name" "img mood mood" "img notes notes" "img buy add";gap:4px 14px;padding:18px 0}
+  .r-no{display:none}
+  .r-thumb{display:block;grid-area:img;width:72px;height:auto;aspect-ratio:560/806;object-fit:contain;transform:rotate(var(--tr,-6deg));align-self:center}
+  .r-name{font-size:36px}
+  .r-mood,.r-notes{font-size:13px}
+  .r-buy{justify-items:start;text-align:left;align-self:center}
+  .add{min-height:44px;padding:0 14px}
+  .story-grid,.tester-grid,.faq-grid,.foot-top{grid-template-columns:1fr}
+  /* two clear rows so every caption shows; the note sits under the photos */
+  .collage{height:auto;aspect-ratio:343/540;margin-bottom:44px}
+  .p1{--w:48%;left:0;top:1%}.p2{--w:47%;left:52%;top:4%}.p3{--w:47%;left:51%;top:51%}.p4{--w:47%;left:1%;top:48%}
+  .collage .sticker{width:74px;right:-2px;top:40%;font-size:9px}
+  .collage .scrawl{left:0;bottom:-40px;font-size:22px}
+  .cloud-box{--scale:.56;height:360px}
+  .notes-wall{grid-template-columns:1fr;gap:26px}
+  .pair{--bh:clamp(150px,46vw,180px)}
+  details p{margin-left:0}
+  summary{grid-template-columns:36px 1fr auto}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:20px 14px;padding-block:24px}
+  .foot-grid > :first-child,.foot-grid > :last-child{grid-column:1/-1}
+  .big-mark{font-size:33vw}
+  .foot-base{flex-direction:column;gap:4px}
+}
+</style>
+
+<div class="announce" id="top"><div class="wrap"><span class="meta">10% off launch offer</span><span class="meta">Free shipping on all orders</span><span class="meta">Free tester on every order</span></div></div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Sadhoo home"><img class="l-icon" src="img/logo-icon.svg" alt="" width="129" height="115"><img class="l-text" src="img/logo-text.svg" alt="Sadhoo" width="125" height="17"></a>
+    <nav class="nav-c" aria-label="Main"><a href="#four">Fragrances</a><a href="#story">Our story</a><a href="#faq">Help</a></nav>
+    <div class="nav-r">
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sheet">Menu</button>
+      <button id="bagBtn">Bag <span class="n" id="bagN">(0)</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" aria-label="Sadhoo">
+  <div class="wrap hero-top">
+    <div class="meta"><span>Nº 01 — 04</span><span>Extraits de parfum</span></div>
+    <div class="meta"><span>Made in India</span><span>Bengaluru</span></div>
+    <div class="meta"><span>₹1,349 each</span><span>was ₹1,499</span></div>
+    <div class="meta"><span>6–8 h on skin</span><span>12–16 h on clothes</span></div>
+  </div>
+  <div class="wrap hero-head">
+    <h1>Fragrance with a <em>soul.</em></h1>
+    <div class="hero-cta"><a class="btn" href="#four">Shop the four →</a><a class="ulink" href="#story">Our story</a></div>
+  </div>
+  <div class="field" id="field">
+    <div class="wordmark" aria-hidden="true"><img src="img/logo-text.svg" alt="" width="125" height="17" fetchpriority="high"></div>
+    <button class="bottle" data-k="kailash" style="--x:9%;--y:6%;--r:-9deg;--mx:2%;--my:24%;--d:0s"><img src="img/kailash-bottle.webp" alt="Kailash bottle" width="560" height="806" fetchpriority="high"><span class="tag">Kailash ↓</span></button>
+    <button class="bottle" data-k="tripti" style="--x:33%;--y:22%;--r:6deg;--mx:26%;--my:6%;--d:-1.6s"><img src="img/tripti-bottle.webp" alt="Tripti bottle" width="560" height="806"><span class="tag">Tripti ↓</span></button>
+    <button class="bottle" data-k="lavanya" style="--x:56%;--y:2%;--r:-3deg;--mx:50%;--my:28%;--d:-3.1s"><img src="img/lavanya-bottle.webp" alt="Lavanya bottle" width="560" height="806"><span class="tag">Lavanya ↓</span></button>
+    <button class="bottle" data-k="tattva" style="--x:76%;--y:18%;--r:12deg;--mx:70%;--my:4%;--d:-4.4s"><img src="img/tattva-bottle.webp" alt="Tattva bottle" width="560" height="806"><span class="tag">Tattva ↓</span></button>
+    <div class="hint" aria-hidden="true"><span class="pen">go on,<br>move us around</span><svg viewBox="0 0 70 54"><path d="M4 6 C 30 4, 52 18, 58 44"/><path d="M50 36 L58 46 L64 34"/></svg></div>
+    <div class="sticker" aria-hidden="true"><span><b>FREE</b>tester in<br>every bag</span></div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="wrap">
+    <img class="stamp-icon" src="img/logo-icon.svg" alt="" width="129" height="115" loading="lazy">
+    <p>Fragrance is a feeling, a memory, a moment of <span class="mark">stillness<svg viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M18 44 C 14 14, 120 4, 186 20 C 206 30, 196 66, 120 72 C 60 78, 6 66, 12 40 C 16 24, 60 12, 96 12"/></svg></span>. <em>Not</em> <span class="mark under">a trend<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 12 C 40 4, 80 18, 120 8 S 180 14, 198 6"/></svg></span>.</p>
+    <span class="pen">four bottles. four states of being. that's it.</span>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"><div class="band-track" id="band">
+  <span>Oud</span><i>benzoin tears</i><b>kailash</b><span>Orchid</span><i>gardenia</i><b>tripti</b><span>Lavender</span><i>agarwood</i><b>lavanya</b><span>Cinnamon</span><i>patchouli</i><b>tattva</b>
+  <span>Oud</span><i>benzoin tears</i><b>kailash</b><span>Orchid</span><i>gardenia</i><b>tripti</b><span>Lavender</span><i>agarwood</i><b>lavanya</b><span>Cinnamon</span><i>patchouli</i><b>tattva</b>
+</div></div>
+
+<!-- THE FOUR -->
+<section class="index" id="four" aria-labelledby="fourT">
+  <div class="wrap">
+    <div class="sec-h"><span class="num">(01)</span><h2 id="fourT">The four</h2><span class="pen">pick by feeling,<br>not by notes</span></div>
+    <ol class="rows" id="rows">
+      <li class="row" id="kailash" data-k="kailash" style="--acc:var(--k);--tr:-7deg">
+        <span class="r-no num">Nº 01</span><img class="r-thumb" src="img/kailash-bottle.webp" alt="" loading="lazy">
+        <h3 class="r-name">Kailash <span class="deva" lang="hi">कैलाश</span></h3>
+        <span class="r-mood"><b>Stillness</b>Meditative, deep. For him.</span>
+        <span class="r-notes">Oud wood, benzoin tears · incense · raspberry, patchouli</span>
+        <span class="r-buy"><span><b>₹1,349</b><s>₹1,499</s></span><small>★ 4.8 (214) · in stock</small></span>
+        <button class="add" data-add="kailash" aria-label="Add Kailash to bag">Add +</button>
+      </li>
+      <li class="row" id="tripti" data-k="tripti" style="--acc:var(--t);--tr:5deg">
+        <span class="r-no num">Nº 02</span><img class="r-thumb" src="img/tripti-bottle.webp" alt="" loading="lazy">
+        <h3 class="r-name">Tripti <span class="deva" lang="hi">तृप्ति</span></h3>
+        <span class="r-mood"><b>Warmth</b>Warm, graceful. For her.</span>
+        <span class="r-notes">Orchid · gardenia · vanilla, amber, sandalwood</span>
+        <span class="r-buy"><span><b>₹1,349</b><s>₹1,499</s></span><small>★ 4.6 (167) · in stock</small></span>
+        <button class="add" data-add="tripti" aria-label="Add Tripti to bag">Add +</button>
+      </li>
+      <li class="row" id="lavanya" data-k="lavanya" style="--acc:var(--l);--tr:-4deg">
+        <span class="r-no num">Nº 03</span><img class="r-thumb" src="img/lavanya-bottle.webp" alt="" loading="lazy">
+        <h3 class="r-name">Lavanya <span class="deva" lang="hi">लावण्य</span></h3>
+        <span class="r-mood"><b>Grace</b>Floral, elegant. For her.</span>
+        <span class="r-notes">Lavender · agarwood · oud</span>
+        <span class="r-buy"><span><b>₹1,349</b><s>₹1,499</s></span><small>★ 4.7 (189) · in stock</small></span>
+        <button class="add" data-add="lavanya" aria-label="Add Lavanya to bag">Add +</button>
+      </li>
+      <li class="row" id="tattva" data-k="tattva" style="--acc:var(--v);--tr:8deg">
+        <span class="r-no num">Nº 04</span><img class="r-thumb" src="img/tattva-bottle.webp" alt="" loading="lazy">
+        <h3 class="r-name">Tattva <span class="deva" lang="hi">तत्त्व</span></h3>
+        <span class="r-mood"><b>Grounding</b>Earthy, intense. For him.</span>
+        <span class="r-notes">Cinnamon · lavender · sandalwood, amber, patchouli</span>
+        <span class="r-buy"><span><b>₹1,349</b><s>₹1,499</s></span><small>★ 4.5 (142) · in stock</small></span>
+        <button class="add" data-add="tattva" aria-label="Add Tattva to bag">Add +</button>
+      </li>
+    </ol>
+    <p class="rate-note">50 ml extrait de parfum each. Ratings are from the current site and will be swapped for verified reviews before launch.</p>
+  </div>
+  <img class="follow" id="follow" src="img/kailash-bottle.webp" alt="" aria-hidden="true">
+</section>
+
+<!-- STORY -->
+<section class="story" id="story" aria-labelledby="storyT">
+  <div class="wrap story-grid">
+    <div class="story-text">
+      <span class="num">(02)</span>
+      <h2 id="storyT">Our story <em>made for the quiet between moments.</em></h2>
+      <p>Sadhoo makes fragrances inspired by India's landscapes, rituals and quiet moments. Misty mountains, blooming gardens, ancient forests.</p>
+      <p>We started with four and gave each one a feeling instead of a trend. Every bottle is an extrait de parfum, the most concentrated form, made in small batches in India.</p>
+      <dl class="facts">
+        <div><dt>04</dt><dd>fragrances</dd></div>
+        <div><dt>50 ml</dt><dd>extrait de parfum</dd></div>
+        <div><dt>24 h</dt><dd>to leave our studio</dd></div>
+        <div><dt>14 days</dt><dd>returns, unopened bottles</dd></div>
+      </dl>
+    </div>
+    <div class="collage" aria-label="Sadhoo photographs">
+      <figure class="ph p1"><img src="img/kailash-snow.webp" alt="Kailash bottle resting in snow"><figcaption>kailash, in snow</figcaption></figure>
+      <figure class="ph p2"><img src="img/lavanya-scene.webp" alt="Lavanya in a lavender field"><figcaption>lavender field</figcaption></figure>
+      <figure class="ph p3"><img src="img/tattva-scene.webp" alt="Tattva among ferns"><figcaption>fern + wet earth</figcaption></figure>
+      <figure class="ph p4"><img src="img/tripti-scene.webp" alt="Tripti among pink orchids"><figcaption>orchid, after rain</figcaption></figure>
+      <div class="sticker" aria-hidden="true"><span><b>IN</b>small<br>batches</span></div>
+      <span class="pen scrawl" aria-hidden="true">← all shot in India</span>
+    </div>
+  </div>
+</section>
+
+<!-- NOTE CLOUD -->
+<section class="cloud" aria-labelledby="cloudT">
+  <div class="wrap">
+    <div class="sec-h"><span class="num">(03)</span><h2 id="cloudT">Follow a note</h2><span class="pen">tap one you<br>already love</span></div>
+    <div class="cloud-box" id="cloud" role="group" aria-label="Notes"></div>
+    <div class="cloud-out"><p id="cloudSay" aria-live="polite"></p><div class="hits" id="hits"></div></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="said" aria-labelledby="saidT">
+  <div class="wrap">
+    <div class="sec-h"><span class="num">(04)</span><h2 id="saidT">Said about it</h2><span class="pen">in their<br>own words</span></div>
+    <div class="notes-wall">
+      <figure class="paper" style="--r:-2deg;--tr:-4deg"><blockquote>“There is something incredibly calming about Sadhoo. Kailash feels like stepping into the mountains after rain.”</blockquote><footer><b>Ananya Mehta</b><span>on Kailash</span></footer></figure>
+      <figure class="paper" style="--r:1.5deg;--tr:3deg"><blockquote>“Tripti has become my everyday fragrance. Soft, warm and somehow familiar from the first spray.”</blockquote><footer><b>Rhea Kapoor</b><span>on Tripti</span></footer></figure>
+      <figure class="paper" style="--r:-1deg;--tr:-2deg"><blockquote>“Lavanya is elegant without trying too hard. It has quickly become the fragrance people ask me about.”</blockquote><footer><b>Meera Shah</b><span>on Lavanya</span></footer></figure>
+      <figure class="paper" style="--r:2.5deg;--tr:5deg"><blockquote>“Tattva feels grounded and deep. It is the kind of fragrance that stays with you long after you leave.”</blockquote><footer><b>Karan Malhotra</b><span>on Tattva</span></footer></figure>
+    </div>
+  </div>
+</section>
+
+<!-- TESTER -->
+<section class="tester" aria-labelledby="testT">
+  <div class="wrap">
+  <div class="sec-h"><span class="num">(05)</span><h2 id="testT">Which one?</h2><span class="pen">free tester<br>in every bag</span></div>
+  <div class="tester-grid" style="margin-top:30px">
+    <div>
+      <p class="tester-lede">Not sure which one is <em>yours?</em> Buy the bottle that called to you first, and try a second at home.</p>
+      <ol><li><span>01</span>Choose your 50 ml bottle</li><li><span>02</span>Pick a free tester of another in the bag</li><li><span>03</span>Free shipping, delivered in 3–7 days</li></ol>
+      <a class="btn" href="#four">Choose your bottle →</a>
+    </div>
+    <div class="pair" aria-hidden="true">
+      <img class="big" id="pBig" src="img/kailash-bottle.webp" alt="">
+      <img class="mini" id="pMini" src="img/tripti-tester.webp" alt="">
+      <img class="pouch" src="img/pouch.webp" alt="" width="632" height="820" loading="lazy">
+      <span class="pen">free one<svg viewBox="0 0 60 40"><path d="M50 4 C 40 20, 26 30, 8 34"/><path d="M16 26 L7 34 L18 38"/></svg></span>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq" aria-labelledby="faqT">
+  <div class="wrap">
+    <div class="sec-h"><span class="num">(06)</span><h2 id="faqT">Questions</h2><span class="pen">still stuck?<br>write to us</span></div>
+    <div class="faq-grid">
+      <div class="ask">
+        <span class="meta">Talk to a person</span>
+        <div class="row2"><code>support@thesadhoo.com</code><button class="copy" data-copy="support@thesadhoo.com">Copy</button></div>
+        <div class="row2"><code>022 6971 9732</code><button class="copy" data-copy="02269719732">Copy</button></div>
+        <span style="color:var(--ink-2)">We reply within one working day.</span>
+      </div>
+      <div>
+        <details name="faq" open><summary><span class="num">01</span>How long does it last?</summary><p>Each bottle is an extrait de parfum, so 6–8 hours on skin and 12–16 hours on clothes is typical. It varies with skin, climate and activity.</p></details>
+        <details name="faq"><summary><span class="num">02</span>How do I choose my first one?</summary><p>Start from the feeling. Kailash for stillness, Tripti for warmth, Lavanya for grace, Tattva for grounding. Your free tester lets you try a second.</p></details>
+        <details name="faq"><summary><span class="num">03</span>What makes Sadhoo different?</summary><p>Each scent is built around a landscape and a feeling rather than a trend, and every bottle is extrait strength.</p></details>
+        <details name="faq"><summary><span class="num">04</span>Returns and exchanges?</summary><p>Unopened bottles can be returned or exchanged within 14 days. If a bottle arrives damaged, write to us and we replace it.</p></details>
+        <details name="faq"><summary><span class="num">05</span>Where do you ship, and how fast?</summary><p>Across India. Orders leave the studio within 24 hours and arrive in 3–7 business days. Shipping is free.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <h2>Notes from Sadhoo, <em>occasionally.</em></h2>
+      <form class="news" id="newsForm" novalidate>
+        <label class="meta" for="email">Email address</label>
+        <input id="email" type="email" placeholder="you@example.com" autocomplete="email">
+        <button class="btn" type="submit">Subscribe</button>
+        <p class="news-msg" id="newsMsg" aria-live="polite">Launches and stories. Twice a month at most.</p>
+      </form>
+    </div>
+    <div class="foot-grid">
+      <div><img class="l-full" src="img/logo-full.svg" alt="Sadhoo" width="212" height="212" loading="lazy"><p class="meta" style="margin:0 0 10px">Sadhoo Cosmetics Pvt. Ltd.</p><p style="margin:0;color:var(--ink-2);font-size:13px;max-width:30ch">Fragrance inspired by landscapes, rituals and the quiet beauty of India.</p></div>
+      <div><h3 class="meta">Shop</h3><ul><li><a href="#kailash">Kailash</a></li><li><a href="#tripti">Tripti</a></li><li><a href="#lavanya">Lavanya</a></li><li><a href="#tattva">Tattva</a></li></ul></div>
+      <div><h3 class="meta">Help</h3><ul><li><a href="#faq">Shipping</a></li><li><a href="#faq">Returns</a></li><li><a href="#faq">Privacy</a></li><li><a href="#faq">Terms</a></li></ul></div>
+      <div><h3 class="meta">Find us</h3><address>Vidi-201, SJR Verity, Kasavanahalli,<br>Hosa Road, Bengaluru 560035</address><ul style="margin-top:10px"><li><a href="https://www.instagram.com/sadhoo.lifestyle/" target="_blank" rel="noopener">Instagram @sadhoo.lifestyle ↗</a></li></ul></div>
+    </div>
+    <div class="big-mark" id="bigMark" aria-hidden="true"><img src="img/logo-text.svg" alt="" width="125" height="17" loading="lazy"></div>
+    <div class="foot-base meta"><span>© 2026 Sadhoo Cosmetics Private Limited</span><span>Made in small batches in India</span></div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="cart" aria-label="Your bag" aria-hidden="true">
+  <div class="d-head"><h2>Bag</h2><button class="x" data-close aria-label="Close bag">×</button></div>
+  <div class="offer"><b>10% off launch offer applied.</b> Free shipping · free tester on every order</div>
+  <div class="lines" id="lines"></div>
+  <div class="totals" id="totals"></div>
+</aside>
+<nav class="sheet" id="sheet" aria-label="Menu" aria-hidden="true">
+  <div class="d-head" style="border:0"><span class="logo"><img class="l-text" src="img/logo-text.svg" alt="Sadhoo" width="125" height="17"></span><button class="x" data-close aria-label="Close menu">×</button></div>
+  <a class="big" href="#four" data-close>Fragrances</a>
+  <a class="big" href="#story" data-close>Our story</a>
+  <a class="big" href="#faq" data-close>Help</a>
+  <span class="pen">support@thesadhoo.com</span>
+</nav>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const F={
+  kailash:{name:"Kailash",mood:"Stillness"},
+  tripti:{name:"Tripti",mood:"Warmth"},
+  lavanya:{name:"Lavanya",mood:"Grace"},
+  tattva:{name:"Tattva",mood:"Grounding"}
+};
+const NOTES={Oud:["kailash","lavanya"],Benzoin:["kailash"],Incense:["kailash"],Raspberry:["kailash"],Orchid:["tripti"],Gardenia:["tripti"],Vanilla:["tripti"],Sandalwood:["tripti","tattva"],Amber:["tripti","tattva"],Lavender:["lavanya","tattva"],Agarwood:["lavanya"],Patchouli:["kailash","tattva"],Cinnamon:["tattva"]};
+const PRICE=1349, MRP=1499;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const inr=n=>"₹"+n.toLocaleString("en-IN");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200)}
+
+/* jump to a fragrance row and flash it */
+function goRow(k){const r=document.getElementById(k);r.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});r.classList.add("flash");setTimeout(()=>r.classList.remove("flash"),1200)}
+
+/* draggable bottles: drag to scatter, tap to jump to that fragrance */
+const field=$("#field"); let z=10;
+$$(".bottle").forEach(b=>{
+  let sx=0,sy=0,bx=0,by=0,lastX=0,moved=false,down=false;
+  b.addEventListener("pointerdown",e=>{down=true;moved=false;b.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;lastX=e.clientX;
+    bx=parseFloat(b.style.getPropertyValue("--dx"))||0;by=parseFloat(b.style.getPropertyValue("--dy"))||0;b.classList.add("drag");b.style.zIndex=++z});
+  b.addEventListener("pointermove",e=>{if(!down)return;const mx=e.clientX-sx,my=e.clientY-sy;if(Math.hypot(mx,my)>5)moved=true;if(!moved)return;
+    const fw=field.clientWidth,fh=field.clientHeight,w=b.offsetWidth,h=b.offsetHeight,ox=b.offsetLeft,oy=b.offsetTop;
+    const nx=Math.max(-ox-w*.35,Math.min(fw-ox-w*.65,bx+mx)), ny=Math.max(-oy-h*.3,Math.min(fh-oy-h*.6,by+my));
+    b.style.setProperty("--dx",nx+"px");b.style.setProperty("--dy",ny+"px");
+    const vx=e.clientX-lastX;lastX=e.clientX;b.style.setProperty("--tilt",Math.max(-22,Math.min(22,vx*1.6))+"deg")});
+  const end=()=>{if(!down)return;down=false;b.classList.remove("drag");b.style.setProperty("--tilt","0deg");b._moved=moved;setTimeout(()=>b._moved=false,0)};
+  b.addEventListener("pointerup",end);b.addEventListener("pointercancel",end);
+  b.addEventListener("click",e=>{if(b._moved){e.preventDefault();return}goRow(b.dataset.k)});
+});
+
+/* cursor-following bottle over the index rows (mouse only) */
+const follow=$("#follow");
+if(matchMedia("(hover:hover) and (pointer:fine)").matches && !reduce){
+  let tx=0,ty=0,cx=0,cy=0,vx=0,running=false;
+  const loop=()=>{const nx=cx+(tx-cx)*.16,ny=cy+(ty-cy)*.16;vx=nx-cx;cx=nx;cy=ny;
+    follow.style.transform=`translate(${cx+30}px,${cy-110}px) rotate(${Math.max(-18,Math.min(18,vx*1.2))}deg)`;
+    if(follow.classList.contains("on"))requestAnimationFrame(loop);else running=false};
+  addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY},{passive:true});
+  $$(".row").forEach(r=>{
+    r.addEventListener("pointerenter",e=>{follow.src=`img/${r.dataset.k}-bottle.webp`;if(!follow.classList.contains("on")){cx=e.clientX;cy=e.clientY}follow.classList.add("on");if(!running){running=true;requestAnimationFrame(loop)}});
+    r.addEventListener("pointerleave",()=>follow.classList.remove("on"));
+  });
+}
+
+/* note cloud: hand-placed, deliberately uneven */
+const CL=[["Oud",12,16,84,-5,"s"],["Sandalwood",46,10,34,3,"n"],["Lavender",78,20,60,-8,"s"],["Amber",22,50,50,7,"a"],["Patchouli",54,40,30,-3,"s"],
+["Vanilla",84,54,44,10,"n"],["Orchid",36,80,66,-6,"s"],["Benzoin",68,74,32,4,"a"],["Incense",8,84,28,-11,"n"],["Agarwood",90,88,26,3,"s"],
+["Cinnamon",34,28,24,9,"a"],["Gardenia",62,58,22,-7,"n"],["Raspberry",14,66,22,5,"s"]];
+let activeNote="Oud";
+function renderCloud(){
+  $("#cloud").innerHTML=CL.map(([w,x,y,fs,r,t],i)=>`<button class="word t-${t}" style="--x:${x}%;--y:${y}%;--fs:${fs}px;--r:${r}deg;--dur:${6+(i*1.7)%5}s;--del:${-(i*.9)}s" data-note="${w}" data-ax="${x}" data-ay="${y}" aria-pressed="${w===activeNote}">${w}</button>`).join("");
+  const hits=NOTES[activeNote];
+  $("#cloudSay").innerHTML=`<b>${activeNote}</b> lives in ${hits.map(k=>F[k].name).join(" and ")}.`;
+  $("#hits").innerHTML=hits.map(k=>`<a href="#${k}" data-row="${k}"><img src="img/${k}-bottle.webp" alt="">${F[k].name}</a>`).join("");
+}
+$("#cloud").addEventListener("click",e=>{const b=e.target.closest("[data-note]");if(b){activeNote=b.dataset.note;renderCloud()}});
+document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const k=a.getAttribute("href").slice(1);if(F[k]){e.preventDefault();closeAll();goRow(k)}});
+renderCloud();
+
+/* tester pair cycles */
+const pairs=[["kailash","tripti"],["tripti","lavanya"],["lavanya","tattva"],["tattva","kailash"]];let pi=0;
+if(!reduce)setInterval(()=>{pi=(pi+1)%pairs.length;$("#pBig").src=`img/${pairs[pi][0]}-bottle.webp`;$("#pMini").src=`img/${pairs[pi][1]}-tester.webp`},3400);
+
+
+/* bag */
+const cart={};let testerPick="";
+document.addEventListener("click",e=>{const b=e.target.closest("[data-add]");if(!b)return;cart[b.dataset.add]=(cart[b.dataset.add]||0)+1;renderCart();open("cart")});
+function renderCart(){
+  const keys=Object.keys(cart).filter(k=>cart[k]>0),n=keys.reduce((a,k)=>a+cart[k],0);
+  $("#bagN").textContent=`(${n})`;
+  if(!n){$("#lines").innerHTML=`<div class="empty"><b>Nothing here yet.</b><span>Four bottles. Start with the feeling you want today.</span></div>`;$("#totals").innerHTML="";return}
+  const others=Object.keys(F).filter(k=>!keys.includes(k));if(!others.includes(testerPick))testerPick=others[0]||"kailash";
+  $("#lines").innerHTML=keys.map(k=>`<div class="li"><img src="img/${k}-bottle.webp" alt=""><div><b>${F[k].name}</b><div class="qty"><button data-q="${k}" data-d="-1" aria-label="Remove one ${F[k].name}">−</button><span>${cart[k]}</span><button data-q="${k}" data-d="1" aria-label="Add one ${F[k].name}">+</button></div></div><span style="text-align:right">${inr(PRICE*cart[k])}<br><s style="color:var(--ink-2);font-size:12px">${inr(MRP*cart[k])}</s></span></div>`).join("")
+    +`<div class="tp"><label for="tSel" class="meta">Your free tester</label><select id="tSel">${Object.keys(F).map(k=>`<option value="${k}" ${k===testerPick?"selected":""}>${F[k].name}</option>`).join("")}</select></div>`;
+  const sub=MRP*n,tot=PRICE*n;
+  $("#totals").innerHTML=`<div class="r"><span>Subtotal</span><span>${inr(sub)}</span></div><div class="r"><span>Launch offer (10%)</span><span>−${inr(sub-tot)}</span></div><div class="r"><span>Shipping · tester</span><span>Free</span></div><div class="r g"><span>Total</span><span>${inr(tot)}</span></div><button class="btn" id="checkout">Checkout · ${inr(tot)}</button><small>Taxes included · 3–7 business days · 14-day returns</small>`;
+  $("#tSel").addEventListener("change",e=>testerPick=e.target.value);
+  $("#checkout").addEventListener("click",()=>toast("This opens Shopify checkout on the live store"));
+}
+$("#lines").addEventListener("click",e=>{const b=e.target.closest("[data-q]");if(!b)return;cart[b.dataset.q]=Math.max(0,cart[b.dataset.q]+ +b.dataset.d);renderCart()});
+$("#bagBtn").addEventListener("click",()=>{renderCart();open("cart")});
+
+/* drawers */
+function open(id){const d=$("#"+id);d.classList.add("on");d.setAttribute("aria-hidden","false");if(id==="cart")$("#scrim").classList.add("on");if(id==="sheet")$("#menuBtn").setAttribute("aria-expanded","true");d.querySelector("[data-close]").focus({preventScroll:true})}
+function closeAll(){["cart","sheet"].forEach(id=>{const d=$("#"+id);d.classList.remove("on");d.setAttribute("aria-hidden","true")});$("#scrim").classList.remove("on");$("#menuBtn").setAttribute("aria-expanded","false")}
+document.addEventListener("click",e=>{if(e.target.closest("[data-close]"))closeAll()});
+$("#scrim").addEventListener("click",closeAll);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
+$("#menuBtn").addEventListener("click",()=>open("sheet"));
+
+/* FAQ: one open at a time */
+$$('details[name="faq"]').forEach(d=>d.addEventListener("toggle",()=>{if(d.open)$$('details[name="faq"]').forEach(o=>{if(o!==d)o.open=false})}));
+
+/* copy + newsletter */
+$$("[data-copy]").forEach(b=>b.addEventListener("click",()=>{const v=b.dataset.copy;try{navigator.clipboard.writeText(v).then(()=>toast("Copied "+v),()=>toast("Select the text to copy it"))}catch(_){toast("Select the text to copy it")}}));
+$("#newsForm").addEventListener("submit",e=>{e.preventDefault();const v=$("#email").value.trim(),m=$("#newsMsg");
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){m.textContent="Enter an email like name@example.com.";$("#email").focus();return}
+  m.textContent=`Subscribed ${v}.`;$("#email").value=""});
+renderCart();
+
+/* ================= motion engine =================
+   One rAF loop reads scroll position and velocity and writes CSS variables. */
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+/* swap the logo <img> for the same SVG inline, tagging each letter shape in left-to-right order */
+let wmLetters=[], wmSvg=null;
+async function inlineLogo(box,jumble){
+  try{
+    const txt=await (await fetch("img/logo-text.svg")).text();
+    const svg=new DOMParser().parseFromString(txt,"image/svg+xml").querySelector("svg");
+    if(!svg)return [];
+    svg.removeAttribute("width");svg.removeAttribute("height");svg.setAttribute("aria-hidden","true");svg.setAttribute("focusable","false");
+    const paths=[...svg.querySelectorAll("path")].sort((a,b)=>parseFloat(a.getAttribute("d").slice(1))-parseFloat(b.getAttribute("d").slice(1)));
+    /* resting jumble, in logo units (the logo is 17 units tall) */
+    const JIT=[[-.5,-3],[-1.3,2.5],[.7,-1.5],[-.9,3],[.8,-2.5],[-.4,2]];
+    paths.forEach((p,i)=>{p.classList.add("lt");p.style.setProperty("--i",i);const j=jumble?(JIT[i]||[0,0]):[0,0];p.style.setProperty("--jy",j[0]+"px");p.style.setProperty("--jr",j[1]+"deg")});
+    const node=document.importNode(svg,true); box.replaceChildren(node);
+    return {svg:node,letters:[...node.querySelectorAll(".lt")].sort((a,b)=>a.style.getPropertyValue("--i")-b.style.getPropertyValue("--i"))};
+  }catch(_){return null}
+}
+inlineLogo($(".wordmark"),true).then(r=>{if(r&&r.letters){wmLetters=r.letters;wmSvg=r.svg}});
+let bmLetters=[];
+inlineLogo($("#bigMark"),false).then(r=>{if(r&&r.letters)bmLetters=r.letters});
+const bottles=$$(".bottle"), wmImg=$(".wordmark img"), heads=$$(".sec-h h2, .story-text h2"), photos=$$(".ph");
+bottles.forEach((b,i)=>b.style.setProperty("--dd",(.1+i*.14)+"s"));
+
+/* brand line: split into words that light up as you read down */
+const mani=$(".manifesto p"), mWords=[];
+(function split(el){[...el.childNodes].forEach(n=>{
+  if(n.nodeType===3){const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.append(t);return}const s=document.createElement("span");s.className="w";s.textContent=t;mWords.push(s);f.append(s)});n.replaceWith(f)}
+  else if(n.nodeType===1 && n.tagName.toLowerCase()!=="svg")split(n)})})(mani);
+
+/* footer letters hop once when they come into view */
+const bm=$("#bigMark");
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){bm.classList.remove("hop");void bm.offsetWidth;bm.classList.add("hop")}}),{threshold:.5}).observe(bm);
+
+if(!reduce){
+  const band=$("#band"), heroEl=$(".hero"), collage=$(".collage");
+  const penPaths=$$(".manifesto .mark path"); penPaths.forEach(pp=>{pp.style.strokeDasharray="1";pp.style.strokeDashoffset="1"});
+  // each bottle flies off in its own direction as the hero scrolls away
+  const fly=[[-1.1,1.0,-34],[-.35,1.3,22],[.45,1.15,-18],[1.2,.9,38]];
+  const lfac=[1.2,-.7,.9,-1.1,.6,-.9];
+  const pfac=[[-8,40],[6,-30],[-5,24],[9,-44]];
+  let lastY=scrollY, vel=0, off=0, dir=1;
+  function frame(){
+    const y=scrollY, vh=innerHeight, dy=y-lastY; lastY=y; vel=vel*.86+dy*.14; if(Math.abs(dy)>.5)dir=dy>0?1:-1;
+    // hero scatter
+    const hp=clamp(y/(heroEl.offsetHeight*.9),0,1.2);
+    if(hp<1.2){bottles.forEach((b,i)=>{if(b.classList.contains("drag"))return;const[f,u,s]=fly[i];
+      b.style.setProperty("--px",(f*hp*240).toFixed(1)+"px");b.style.setProperty("--py",(-u*hp*260).toFixed(1)+"px");b.style.setProperty("--pr",(s*hp).toFixed(1)+"deg")});
+      if(wmLetters.length){const s=(wmSvg.clientWidth||1000)/125;wmLetters.forEach((l,i)=>{l.style.setProperty("--ly",(lfac[i]*hp*110/s).toFixed(2)+"px");l.style.setProperty("--lr",(lfac[i]*hp*-9).toFixed(2)+"deg")})}
+      else if(wmImg){wmImg.style.setProperty("--ly",(hp*90).toFixed(1)+"px");wmImg.style.setProperty("--ls",(1+hp*.12).toFixed(3))}}
+    // footer logo: letters fly in from different directions and settle as you reach the bottom
+    if(bmLetters.length){const r=bm.getBoundingClientRect();if(r.top<vh&&r.bottom>0){const left=document.documentElement.scrollHeight-(y+vh),k=clamp(left/(vh*.6),0,1);
+      bmLetters.forEach((l,i)=>{l.style.setProperty("--ly",(-lfac[i]*k*9).toFixed(2)+"px");l.style.setProperty("--lr",(lfac[i]*k*16).toFixed(2)+"deg")})}}
+    // ticker: base drift + scroll speed, leans with velocity, reverses with direction
+    off-=(0.6+Math.min(Math.abs(vel),60)*.35)*dir; const half=band.scrollWidth/2; if(off<-half)off+=half; if(off>0)off-=half;
+    band.style.transform=`translate3d(${off.toFixed(1)}px,0,0) skewX(${clamp(-vel*.5,-14,14).toFixed(2)}deg)`;
+    // headings squeeze from wide to condensed as they enter
+    heads.forEach(h=>{const r=h.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;const p=clamp((vh-r.top)/(vh*.55),0,1);h.style.setProperty("--wd",(125-63*p).toFixed(1))});
+    // brand line words light up
+    // brand line: 0 when its top enters the screen, 1 when its centre reaches the screen's centre
+    const mr=mani.getBoundingClientRect();if(mr.bottom>0&&mr.top<vh){const endTop=vh/2-mr.height/2,p=clamp((vh-mr.top)/(vh-endTop),0,1);
+      mWords.forEach((w,i)=>w.classList.toggle("dim",(i+1)/mWords.length>p/.7+.001));          // words light by 70%
+      const seg=(a,b)=>clamp((p-a)/(b-a),0,1);
+      penPaths.forEach((pp,i)=>{const d=i===0?seg(.55,.9):seg(.8,1);pp.style.strokeDashoffset=(1-d).toFixed(3)})}  // circle, then underline, done at centre
+    // collage swings as it passes
+    const cr=collage.getBoundingClientRect();if(cr.bottom>0&&cr.top<vh){const p=clamp(((cr.top+cr.height/2)-vh/2)/vh,-1,1);photos.forEach((ph,i)=>{ph.style.setProperty("--sr",(pfac[i][0]*p).toFixed(2)+"deg");ph.style.setProperty("--sy",(pfac[i][1]*p).toFixed(1)+"px")})}
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // cursor repel: hero bottles and cloud words shy away from the pointer
+  if(matchMedia("(hover:hover) and (pointer:fine)").matches){
+    field.addEventListener("pointermove",e=>{bottles.forEach(b=>{if(b.classList.contains("drag"))return;const r=b.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=cx-e.clientX,dy=cy-e.clientY,d=Math.hypot(dx,dy),R=260;
+      const k=d<R?(1-d/R)*36:0;b.style.setProperty("--hx",(dx/(d||1)*k).toFixed(1)+"px");b.style.setProperty("--hy",(dy/(d||1)*k).toFixed(1)+"px")})});
+    field.addEventListener("pointerleave",()=>bottles.forEach(b=>{b.style.setProperty("--hx","0px");b.style.setProperty("--hy","0px")}));
+    const box=$("#cloud");
+    box.addEventListener("pointermove",e=>{const r=box.getBoundingClientRect();$$(".word").forEach(w=>{const ax=r.left+r.width*w.dataset.ax/100,ay=r.top+r.height*w.dataset.ay/100,dx=ax-e.clientX,dy=ay-e.clientY,d=Math.hypot(dx,dy),R=170;
+      const k=d<R?(1-d/R)*46:0;w.style.setProperty("--ox",(dx/(d||1)*k).toFixed(1)+"px");w.style.setProperty("--oy",(dy/(d||1)*k).toFixed(1)+"px")})});
+    box.addEventListener("pointerleave",()=>$$(".word").forEach(w=>{w.style.setProperty("--ox","0px");w.style.setProperty("--oy","0px")}));
+  }
+}
+</script>
